@@ -2,6 +2,7 @@ package main
 
 import (
 	"iainmcl/gographql/graph"
+	"iainmcl/gographql/internal/auth"
 	database "iainmcl/gographql/internal/pkg/db/postgresql"
 
 	"log"
@@ -10,6 +11,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
+    "github.com/go-chi/chi"
 )
 
 const defaultPort = "8080"
@@ -19,6 +21,10 @@ func main() {
 	if port == "" {
 		port = defaultPort
 	}
+
+    router := chi.NewRouter()
+
+    router.Use(auth.Middleware())
 
 	database.InitDB()
 	defer database.CloseDB()
