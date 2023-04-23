@@ -2,7 +2,6 @@ package main
 
 import (
 	"iainmcl/gographql/graph"
-	// Import package database from internal\pkg\db\postgresql\postgresql.go
 	database "iainmcl/gographql/internal/pkg/db/postgresql"
 
 	"log"
